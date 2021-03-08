@@ -1,4 +1,5 @@
 
+
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -43,7 +44,7 @@ function init() {
     scene.add( dirLight2 );
 
     const loader = new VOXLoader();
-    loader.load( 'https://ipfs.io/ipfs/QmPjYeups6CJr3E1UtUvN8Vz67bPfXo9qExvjschnKuGuk', function ( chunks ) {
+    loader.load( 'https://ipfs.io/ipfs/'+getUrlVars()['vox'], function ( chunks ) {
 
         for ( let i = 0; i < chunks.length; i ++ ) {
 
@@ -52,7 +53,7 @@ function init() {
             // displayPalette( chunk.palette );
 
             const mesh = new VOXMesh( chunk );
-            mesh.scale.setScalar( 0.0015 );
+            mesh.scale.setScalar( 0.0025 );
             scene.add( mesh );
 
         }
@@ -69,7 +70,7 @@ function init() {
     // controls
 
     controls = new OrbitControls( camera, renderer.domElement );
-    controls.minDistance = .1;
+    controls.minDistance = 0.1;
     controls.maxDistance = 0.5;
 
     //
@@ -78,7 +79,7 @@ function init() {
 
 }
 
-/*
+
 function displayPalette( palette ) {
     const canvas = document.createElement( 'canvas' );
     canvas.width = 8;
@@ -100,7 +101,16 @@ function displayPalette( palette ) {
         context.fillRect( x, 31 - y, 1, 1 );
     }
 }
-*/
+
+
+
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
 
 function onWindowResize() {
 

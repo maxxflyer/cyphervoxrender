@@ -9,27 +9,60 @@
 		</style>
 	</head>
 	<body>
- 
+       
+        <script src="three.js"></script>
         <script type="module"> 
 
 import * as THREE from 'https://unpkg.com/three/build/three.module.js'
+
 import { OrbitControls } from 'https://unpkg.com/three/examples/jsm/controls/OrbitControls.js'
 import { VOXLoader, VOXMesh } from 'https://unpkg.com/three/examples/jsm/loaders/VOXLoader.js'
-		
 
 let camera, controls, scene, renderer;
+const objects = [];
 
+		
 init();
 animate();
 
 function init() {
-
+    renderer = new THREE.WebGLRenderer();
     camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.01, 10 );
     camera.position.set( 0.175, 0.075, 0.175 );
 
     scene = new THREE.Scene();
-    scene.add( camera );
+   scene.add( camera );
+    scene.background = new THREE.Color( "0x"+getUrlVars()['bg'].substr(1) );
 
+   // raycaster = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, - 1, 0 ), 0, 10 );
+    //let material = new THREE.MeshPhongMaterial( { color: 0xb080b0, dithering: true } );
+  
+      
+//let mesh = new THREE.Mesh( geometry, material );
+//////mesh.position.set( 0, - 1, 0 );
+//mesh.rotation.x = - Math.PI * 0.5;
+//mesh.receiveShadow = true;
+//scene.add( mesh );
+
+
+
+renderer.setPixelRatio( window.devicePixelRatio );
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    document.body.appendChild( renderer.domElement );
+
+var loader2 = new THREE.TextureLoader();
+loader2.load('./cypher.png', function ( texture ) {
+
+    let geometry = new THREE.PlaneGeometry( 1, 1 );
+ // var geometry = new THREE.SphereGeometry(100, 20, 20);
+  var material = new THREE.MeshBasicMaterial({map: texture});
+  var mesh = new THREE.Mesh(geometry, material);
+  mesh.position.set( 0, -0.3, 0 );
+mesh.rotation.x = - Math.PI * 0.5;
+mesh.receiveShadow = true;
+  scene.add(mesh);
+
+});
     // light
 
     const hemiLight = new THREE.HemisphereLight( 0x888888, 0x444444, 1 );
@@ -53,7 +86,7 @@ function init() {
             // displayPalette( chunk.palette );
 
             const mesh = new VOXMesh( chunk );
-            mesh.scale.setScalar( 0.005 );
+            mesh.scale.setScalar( 0.0050 );
             scene.add( mesh );
 
         }
@@ -62,45 +95,21 @@ function init() {
 
     // renderer
 
-    renderer = new THREE.WebGLRenderer();
-    renderer.setPixelRatio( window.devicePixelRatio );
-    renderer.setSize( window.innerWidth, window.innerHeight );
-    document.body.appendChild( renderer.domElement );
+    
+ 
 
-    // controls
+     controls
 
     controls = new OrbitControls( camera, renderer.domElement );
     controls.minDistance = 0.1;
     controls.maxDistance = 0.5;
 
-    //
+    
 
-    window.addEventListener( 'resize', onWindowResize );
 
 }
 
 
-function displayPalette( palette ) {
-    const canvas = document.createElement( 'canvas' );
-    canvas.width = 8;
-    canvas.height = 32;
-    canvas.style.position = 'absolute';
-    canvas.style.top = '0';
-    canvas.style.width = '100px';
-    canvas.style.imageRendering = 'pixelated';
-    document.body.appendChild( canvas );
-    const context = canvas.getContext( '2d' );
-    for ( let c = 0; c < 256; c ++ ) {
-        const x = c % 8;
-        const y = Math.floor( c / 8 );
-        const hex = palette[ c + 1 ];
-        const r = hex >> 0 & 0xff;
-        const g = hex >> 8 & 0xff;
-        const b = hex >> 16 & 0xff;
-        context.fillStyle = `rgba(${r},${g},${b},1)`;
-        context.fillRect( x, 31 - y, 1, 1 );
-    }
-}
 
 
 
@@ -130,6 +139,8 @@ function animate() {
     renderer.render( scene, camera );
 
 }
+
+
 		</script>
 	</body>
 </html>

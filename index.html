@@ -70,12 +70,12 @@ if(im!="_"){
     backtexture.format = THREE.RGBFormat;
     backtexture.generateMipmaps = false;
 
-    alert("13")
+    
     let geometry = new THREE.PlaneGeometry( 0.1, 0.15 );
  // var geometry = new THREE.SphereGeometry(100, 20, 20);
   var material = new THREE.MeshBasicMaterial({map: backtexture});
   var front = new THREE.Mesh(geometry, material);
-  alert("14")
+
   front.position.set( 0, 0, 0 );
   front.rotation.x = - Math.PI * 0.5;
   front.rotation.y = - Math.PI * 0.5;
@@ -83,7 +83,7 @@ if(im!="_"){
   front.receiveShadow = true;
  
   scene.add(front);
- alert("12")
+ 
 }else{
 
 uri=im
@@ -92,12 +92,12 @@ if(uri.indexOf("ipfs")==0)
 uri="https://ipfs.io/"+uri.substring(7)
 
 loader2.load(uri, function ( texture ) {
-    alert("3")
+  
     let geometry = new THREE.PlaneGeometry( 0.1, 0.15 );
  // var geometry = new THREE.SphereGeometry(100, 20, 20);
   var material = new THREE.MeshBasicMaterial({map: texture});
   var front = new THREE.Mesh(geometry, material);
-  alert("4")
+
   front.position.set( 0, 0, 0 );
   front.rotation.x = - Math.PI * 0.5;
   front.rotation.y = - Math.PI * 0.5;
@@ -105,7 +105,7 @@ loader2.load(uri, function ( texture ) {
   front.receiveShadow = true;
  
   scene.add(front);
- alert("2")
+
 });
 
 }
@@ -114,7 +114,7 @@ loader2.load(uri, function ( texture ) {
 let im=getUrlVars()["cards"].split(",")[2]
 if(im=="_")im=getUrlVars()["cards"].split(",")[0]
 uri=im
-alert(uri)
+
 if(uri.indexOf("ipfs")==0)
 uri="https://ipfs.io/"+uri.substring(7)
 var loader2 = new THREE.TextureLoader();

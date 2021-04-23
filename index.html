@@ -39,14 +39,14 @@ function init() {
     scene = new THREE.Scene();
     scene.add( camera );
     scene.background = new THREE.Color( "0xffffff" );
-
+alert(getUrlVars()["cards"]);
 
     let uri
 try{
 	var loader2 = new THREE.TextureLoader();
-	let im=getUrlVars()["cards"].split(",")[3]
-	alert(im)
-	if(im=="_")im=getUrlVars()["cards"].split(",")[1]
+	let im=getUrlVars()["cards"].split(",")[3];
+	alert(im);
+	if(im=="_")im=getUrlVars()["cards"].split(",")[1];
 	if(im!="_"){
 	
 	    videoback = document.getElementById('videoback');

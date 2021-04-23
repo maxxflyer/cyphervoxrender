@@ -45,10 +45,10 @@ alert(getUrlVars()["cards"]);
 try{
 	var loader2 = new THREE.TextureLoader();
 	let im=getUrlVars()["cards"].split(",")[3];
-	alert(im);
+	
 	if(im=="_")im=getUrlVars()["cards"].split(",")[1];
 	if(im!="_"){
-	
+	alert(im);
 	    videoback = document.getElementById('videoback');
 	    videoback.setAttribute("src",im)    
 	    backtexture = new THREE.Texture(videoback);
@@ -73,14 +73,13 @@ try{
 		}else{
 
 			uri=im
-			alert(uri)
+			alert("else "+uri)
 			if(uri.indexOf("ipfs")==0)
 			uri="https://ipfs.io/"+uri.substring(7)
 
 			loader2.load(uri, function ( texture ) {
 
 			    let geometry = new THREE.PlaneGeometry( 0.1, 0.15 );
-			 // var geometry = new THREE.SphereGeometry(100, 20, 20);
 			  var material = new THREE.MeshBasicMaterial({map: texture});
 			  var back = new THREE.Mesh(geometry, material);
 
@@ -95,7 +94,7 @@ try{
 			});
 
 		}
-}catch(e){}
+}catch(e){alert(e)}
 
 	
 	try{
@@ -106,10 +105,12 @@ try{
 		if(im=="_")im=getUrlVars()["cards"].split(",")[0]
 
 		if(im!="_"){
-		    		document.getElementById("videofront").setAttribute("src",im)
+			alert(im)
+			 videofront = document.getElementById('videofront');
+		    		videofront.setAttribute("src",im)
 
 
-			    videofront = document.getElementById('videofront');
+			   
 			    fronttexture = new THREE.Texture(videofront);
 			    fronttexture.minFilter = THREE.LinearFilter;
 			    fronttexture.magFilter = THREE.LinearFilter;
@@ -132,14 +133,13 @@ try{
 
 		}else{
 			uri=im
-			alert(uri)
+			alert("else "+uri)
 			if(uri.indexOf("ipfs")==0)
 			uri="https://ipfs.io/"+uri.substring(7)
 
 			loader2.load(uri, function ( texture ) {
 
 			    let geometry = new THREE.PlaneGeometry( 0.1, 0.15 );
-			 // var geometry = new THREE.SphereGeometry(100, 20, 20);
 			  var material = new THREE.MeshBasicMaterial({map: texture});
 
 			  var front = new THREE.Mesh(geometry, material);
@@ -154,7 +154,7 @@ try{
 
 			});
 		}
-	}catch(e){}
+	}catch(e){alert(e)}
     // light
 
     const hemiLight = new THREE.HemisphereLight( 0x888888, 0x444444, 1 );

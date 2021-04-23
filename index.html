@@ -40,131 +40,120 @@ function init() {
     scene.add( camera );
     scene.background = new THREE.Color( "0xffffff" );
 
-    
-    
-    
-   // raycaster = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, - 1, 0 ), 0, 10 );
-    //let material = new THREE.MeshPhongMaterial( { color: 0xb080b0, dithering: true } );
-  
-      
-//let mesh = new THREE.Mesh( geometry, material );
-//////mesh.position.set( 0, - 1, 0 );
-//mesh.rotation.x = - Math.PI * 0.5;
-//mesh.receiveShadow = true;
-//scene.add( mesh );
-
-
-
 
     let uri
 try{
-var loader2 = new THREE.TextureLoader();
-let im=getUrlVars()["cards"].split(",")[3]
-if(im=="_")im=getUrlVars()["cards"].split(",")[1]
-if(im!="_"){
-    document.getElementById("videoback").setAttribute("src",im)
-
-
-    videoback = document.getElementById('videoback');
-    backtexture = new THREE.Texture(videoback);
-    backtexture.minFilter = THREE.LinearFilter;
-    backtexture.magFilter = THREE.LinearFilter;
-    backtexture.format = THREE.RGBFormat;
-    backtexture.generateMipmaps = false;
+	var loader2 = new THREE.TextureLoader();
+	let im=getUrlVars()["cards"].split(",")[3]
+	if(im=="_")im=getUrlVars()["cards"].split(",")[1]
+	if(im!="_"){
+	
+	    videoback = document.getElementById('videoback');
+	    videoback.setAttribute("src",im)    
+	    backtexture = new THREE.Texture(videoback);
+	    backtexture.minFilter = THREE.LinearFilter;
+	    backtexture.magFilter = THREE.LinearFilter;
+	    backtexture.format = THREE.RGBFormat;
+	    backtexture.generateMipmaps = false;
 
  
-    let geometry = new THREE.PlaneGeometry( 0.1, 0.15 );
- // var geometry = new THREE.SphereGeometry(100, 20, 20);
-  var material = new THREE.MeshBasicMaterial({map: backtexture});
-  var back = new THREE.Mesh(geometry, material);
+	    let geometry = new THREE.PlaneGeometry( 0.1, 0.15 );
+	    var material = new THREE.MeshBasicMaterial({map: backtexture});
+	    var back = new THREE.Mesh(geometry, material);
 
-  back.position.set( 0, 0, 0 );
-  back.rotation.x = - Math.PI * 0.5;
-  back.rotation.y = - Math.PI * 0.5;
-  back.rotation.z = - Math.PI * 0.5;
-  back.receiveShadow = true;
+	   back.position.set( 0, 0, 0 );
+	   back.rotation.x = - Math.PI * 0.5;
+	   back.rotation.y = - Math.PI * 0.5;
+	   back.rotation.z = - Math.PI * 0.5;
+	   back.receiveShadow = true;
  
-  scene.add(back);
+		scene.add(back);
 
-}else{
+		}else{
 
-uri=im
-alert(uri)
-if(uri.indexOf("ipfs")==0)
-uri="https://ipfs.io/"+uri.substring(7)
+			uri=im
+			alert(uri)
+			if(uri.indexOf("ipfs")==0)
+			uri="https://ipfs.io/"+uri.substring(7)
 
-loader2.load(uri, function ( texture ) {
+			loader2.load(uri, function ( texture ) {
 
-    let geometry = new THREE.PlaneGeometry( 0.1, 0.15 );
- // var geometry = new THREE.SphereGeometry(100, 20, 20);
-  var material = new THREE.MeshBasicMaterial({map: texture});
-  var back = new THREE.Mesh(geometry, material);
+			    let geometry = new THREE.PlaneGeometry( 0.1, 0.15 );
+			 // var geometry = new THREE.SphereGeometry(100, 20, 20);
+			  var material = new THREE.MeshBasicMaterial({map: texture});
+			  var back = new THREE.Mesh(geometry, material);
 
-  back.position.set( 0, 0, 0 );
-  back.rotation.x = - Math.PI * 0.5;
-  back.rotation.y = - Math.PI * 0.5;
-  back.rotation.z = - Math.PI * 0.5;
-  back.receiveShadow = true;
- 
-  scene.add(back);
+			  back.position.set( 0, 0, 0 );
+			  back.rotation.x = - Math.PI * 0.5;
+			  back.rotation.y = - Math.PI * 0.5;
+			  back.rotation.z = - Math.PI * 0.5;
+			  back.receiveShadow = true;
 
-});
+			  scene.add(back);
 
-}
+			});
+
+		}
 }catch(e){}
 
-let im=getUrlVars()["cards"].split(",")[2]
-if(im=="_")im=getUrlVars()["cards"].split(",")[0]
+	
+	try{
+		
+		var loader2 = new THREE.TextureLoader();
+		
+		let im=getUrlVars()["cards"].split(",")[2]
+		if(im=="_")im=getUrlVars()["cards"].split(",")[0]
 
-if(im!="_"){
-    document.getElementById("videofront").setAttribute("src",im)
+		if(im!="_"){
+		    		document.getElementById("videofront").setAttribute("src",im)
 
 
-    videofront = document.getElementById('videofront');
-    fronttexture = new THREE.Texture(videofront);
-    fronttexture.minFilter = THREE.LinearFilter;
-    fronttexture.magFilter = THREE.LinearFilter;
-    fronttexture.format = THREE.RGBFormat;
-    fronttexture.generateMipmaps = false;
+			    videofront = document.getElementById('videofront');
+			    fronttexture = new THREE.Texture(videofront);
+			    fronttexture.minFilter = THREE.LinearFilter;
+			    fronttexture.magFilter = THREE.LinearFilter;
+			    fronttexture.format = THREE.RGBFormat;
+			    fronttexture.generateMipmaps = false;
 
+
+			    let geometry = new THREE.PlaneGeometry( 0.1, 0.15 );
+
+			  var material = new THREE.MeshBasicMaterial({map: fronttexture});
+			  var front = new THREE.Mesh(geometry, material);
+
+			  front.position.set( 0, 0, 0 );
+			  front.rotation.x = - Math.PI * 0.5;
+			  front.rotation.y = - Math.PI * 0.5;
+			  front.rotation.z = - Math.PI * 0.5;
+			  front.receiveShadow = true;
+
+			  scene.add(front);
+
+		}else{
+			uri=im
+			alert(uri)
+			if(uri.indexOf("ipfs")==0)
+			uri="https://ipfs.io/"+uri.substring(7)
+
+			loader2.load(uri, function ( texture ) {
+
+			    let geometry = new THREE.PlaneGeometry( 0.1, 0.15 );
+			 // var geometry = new THREE.SphereGeometry(100, 20, 20);
+			  var material = new THREE.MeshBasicMaterial({map: texture});
+
+			  var front = new THREE.Mesh(geometry, material);
  
-    let geometry = new THREE.PlaneGeometry( 0.1, 0.15 );
- // var geometry = new THREE.SphereGeometry(100, 20, 20);
-  var material = new THREE.MeshBasicMaterial({map: fronttexture});
-  var front = new THREE.Mesh(geometry, material);
+			  front.position.set( 0, 0, 0 );
+			  front.rotation.x = - Math.PI * 0.5;
+			  front.rotation.y =  Math.PI * 0.5;
+			  front.rotation.z =  Math.PI * 0.5;
+			  front.receiveShadow = true;
 
-  front.position.set( 0, 0, 0 );
-  front.rotation.x = - Math.PI * 0.5;
-  front.rotation.y = - Math.PI * 0.5;
-  front.rotation.z = - Math.PI * 0.5;
-  front.receiveShadow = true;
- 
-  scene.add(front);
+			  scene.add(front);
 
-}else{
-uri=im
-alert(uri)
-if(uri.indexOf("ipfs")==0)
-uri="https://ipfs.io/"+uri.substring(7)
-var loader2 = new THREE.TextureLoader();
-loader2.load(uri, function ( texture ) {
-
-    let geometry = new THREE.PlaneGeometry( 0.1, 0.15 );
- // var geometry = new THREE.SphereGeometry(100, 20, 20);
-  var material = new THREE.MeshBasicMaterial({map: texture});
-  
-  var front = new THREE.Mesh(geometry, material);
- 
-  front.position.set( 0, 0, 0 );
-  front.rotation.x = - Math.PI * 0.5;
-  front.rotation.y =  Math.PI * 0.5;
-  front.rotation.z =  Math.PI * 0.5;
-  front.receiveShadow = true;
- 
-  scene.add(front);
-
-});
-}
+			});
+		}
+	}catch(e){}
     // light
 
     const hemiLight = new THREE.HemisphereLight( 0x888888, 0x444444, 1 );

@@ -131,7 +131,7 @@ if(im!="_"){
     let geometry = new THREE.PlaneGeometry( 0.1, 0.15 );
  // var geometry = new THREE.SphereGeometry(100, 20, 20);
   var material = new THREE.MeshBasicMaterial({map: fronttexture});
-  var back = new THREE.Mesh(geometry, material);
+  var front = new THREE.Mesh(geometry, material);
 
   front.position.set( 0, 0, 0 );
   front.rotation.x = - Math.PI * 0.5;

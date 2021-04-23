@@ -45,6 +45,7 @@ function init() {
 try{
 	var loader2 = new THREE.TextureLoader();
 	let im=getUrlVars()["cards"].split(",")[3]
+	alert(im)
 	if(im=="_")im=getUrlVars()["cards"].split(",")[1]
 	if(im!="_"){
 	

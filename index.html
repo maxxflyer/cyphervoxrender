@@ -48,7 +48,7 @@ try{
 	
 	if(im=="_")im=getUrlVars()["cards"].split(",")[1];
 	if(im!="_"){
-	alert(im);
+	
 	    videoback = document.getElementById('videoback');
 	    videoback.setAttribute("src",im)    
 	    backtexture = new THREE.Texture(videoback);
@@ -73,7 +73,7 @@ try{
 		}else{
 
 			uri=im
-			alert("else "+uri)
+			
 			if(uri.indexOf("ipfs")==0)
 			uri="https://ipfs.io/"+uri.substring(7)
 
@@ -96,7 +96,7 @@ try{
 		}
 }catch(e){alert(e)}
 
-	alert("end");
+	
 	try{
 		
 		var loader2 = new THREE.TextureLoader();
@@ -105,7 +105,7 @@ try{
 		if(im=="_")im=getUrlVars()["cards"].split(",")[0]
 
 		if(im!="_"){
-			alert(im)
+			
 			 videofront = document.getElementById('videofront');
 		    		videofront.setAttribute("src",im)
 
@@ -133,7 +133,7 @@ try{
 
 		}else{
 			uri=im
-			alert("else "+uri)
+			
 			if(uri.indexOf("ipfs")==0)
 			uri="https://ipfs.io/"+uri.substring(7)
 

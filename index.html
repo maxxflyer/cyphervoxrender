@@ -45,12 +45,12 @@ try{
 	var loader2 = new THREE.TextureLoader();
 	let im=getUrlVars()["cards"].split(",")[3];
 	
-	if(im=="_")im=getUrlVars()["cards"].split(",")[1];
+	alert(im);
 	if(im!="_"){
 	
 	    videoback = document.getElementById('videoback');
 		videoback.setAttribute("src",im)    
-		alert(im);
+		alert("1"+im);
 	    backtexture = new THREE.Texture(videoback);
 	    backtexture.minFilter = THREE.LinearFilter;
 	    backtexture.magFilter = THREE.LinearFilter;
@@ -71,9 +71,9 @@ try{
 		scene.add(back);
 
 		}else{
-
+			im=getUrlVars()["cards"].split(",")[1];
 			uri=im
-			
+			alert("2"+im);
 			if(uri.indexOf("ipfs")==0)
 			uri="https://ipfs.io/"+uri.substring(7)
 
@@ -102,10 +102,9 @@ try{
 		var loader2 = new THREE.TextureLoader();
 		
 		let im=getUrlVars()["cards"].split(",")[2]
-		if(im=="_")im=getUrlVars()["cards"].split(",")[0]
 
 		if(im!="_"){
-			
+			alert("3"+im);
 			 videofront = document.getElementById('videofront');
 		    		videofront.setAttribute("src",im)
 
@@ -132,8 +131,10 @@ try{
 			  scene.add(front);
 
 		}else{
+		im=getUrlVars()["cards"].split(",")[0]
+
 			uri=im
-			
+			alert("4"+im);
 			if(uri.indexOf("ipfs")==0)
 			uri="https://ipfs.io/"+uri.substring(7)
 
@@ -202,10 +203,10 @@ function onWindowResize() {
 }
 
 function render() {
-    
+    try{
     if (videoback.readyState === videoback.HAVE_ENOUGH_DATA) if (backtexture) backtexture.needsUpdate = true;  
     if (videofront.readyState === videofront.HAVE_ENOUGH_DATA) if (fronttexture) fronttexture.needsUpdate = true;
-	
+	}catch(e){}
     requestAnimationFrame(render);         
     renderer.render( scene, camera );
 
@@ -214,3 +215,4 @@ function render() {
 </script>
 </body>
 </html>
+

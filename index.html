@@ -1,4 +1,3 @@
-
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -8,15 +7,15 @@
 		</style>
 	</head>
 	<body>
-        <video id="videoback" loop="true" style="position: absolute; left: 15px; top: 205px; display: none" src="" controls="true" autoplay="true" crossorigin="anonymous"></video> 
-        <video id="videofront" loop="true" style="position: absolute; left: 15px; top: 205px; display: none" src="" controls="true" autoplay="true" crossorigin="anonymous"></video> 
-        
-        <script src="three.js"></script>
+        <video id="videoback" loop="true" style="position: absolute; left: 15px; top: 205px; display: none;" src="" controls="true" autoplay="true" crossorigin="anonymous"></video> 
+        <video id="videofront" loop="true" style="position: absolute; left: 15px; top: 205px; display: none;" src="" controls="true" autoplay="true" crossorigin="anonymous"></video> 
         <script type="module"> 
 
-import * as THREE from 'https://unpkg.com/three/build/three.module.js'
 
-import { OrbitControls } from 'https://unpkg.com/three/examples/jsm/controls/OrbitControls.js'
+import * as THREE from './three.module.js'
+//import * as THREE from './three.js'
+import { OrbitControls } from './OrbitControls.js'
+//import { OrbitControls } from 'https://unpkg.com/three/examples/jsm/controls/OrbitControls.js'
 
 let camera, controls, scene, renderer, backtexture, fronttexture, videoback, videofront;
 
@@ -26,10 +25,10 @@ init();
 render();
 
 function init() {
-
+  
     renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setClearColor(new THREE.Color(0xffffff, 1.0));
-    renderer.shadowMapEnabled = true;
+    renderer.shadowMap.enabled = true;
     renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize( window.innerWidth, window.innerHeight );
     document.body.appendChild(renderer.domElement);
@@ -50,7 +49,8 @@ try{
 	if(im!="_"){
 	
 	    videoback = document.getElementById('videoback');
-	    videoback.setAttribute("src",im)    
+		videoback.setAttribute("src",im)    
+		alert(im);
 	    backtexture = new THREE.Texture(videoback);
 	    backtexture.minFilter = THREE.LinearFilter;
 	    backtexture.magFilter = THREE.LinearFilter;
@@ -139,7 +139,7 @@ try{
 
 			loader2.load(uri, function ( texture ) {
 
-			    let geometry = new THREE.PlaneGeometry( 0.1, 0.15 );
+			  let geometry = new THREE.PlaneGeometry( 0.1, 0.15 );
 			  var material = new THREE.MeshBasicMaterial({map: texture});
 
 			  var front = new THREE.Mesh(geometry, material);
@@ -211,7 +211,6 @@ function render() {
 
 }
 
-
-		</script>
-	</body>
+</script>
+</body>
 </html>

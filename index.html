@@ -50,7 +50,7 @@ try{
 	
 	    videoback = document.getElementById('videoback');
 		videoback.setAttribute("src",im)    
-
+		
 	    backtexture = new THREE.Texture(videoback);
 	    backtexture.minFilter = THREE.LinearFilter;
 	    backtexture.magFilter = THREE.LinearFilter;
@@ -205,7 +205,9 @@ function onWindowResize() {
 function render() {
     try{
     if (videoback.readyState === videoback.HAVE_ENOUGH_DATA) if (backtexture) backtexture.needsUpdate = true;  
-    if (videofront.readyState === videofront.HAVE_ENOUGH_DATA) if (fronttexture) fronttexture.needsUpdate = true;
+    }catch(e){}
+	try{
+   if (videofront.readyState === videofront.HAVE_ENOUGH_DATA) if (fronttexture) fronttexture.needsUpdate = true;
 	}catch(e){}
     requestAnimationFrame(render);         
     renderer.render( scene, camera );
@@ -215,4 +217,5 @@ function render() {
 </script>
 </body>
 </html>
+
 
